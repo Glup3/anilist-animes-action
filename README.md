@@ -4,6 +4,9 @@
 
 TODO: Table with Workflow options
 
+<!-- ANILIST:START -->
+<!-- ANILIST:END -->
+
 # Release a new version
 
 ```
