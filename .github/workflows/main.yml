@@ -7,7 +7,7 @@ jobs:
     name: Updates README Anime List
     steps:
       - uses: actions/checkout@v2
-      - uses: glup3/anilist-animes-action@v1.0.0
+      - uses: glup3/anilist-animes-action@v1.0.1
         with:
           ANILIST_USERNAME: 'glup3'
           HEADER_TITLE: "Glup3's cool awesome Animes"
