@@ -2,15 +2,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  hello_world_job:
+  update_animes:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Updates README Anime List
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: glup3/anilist-animes-action@v0.1.0
+      - name: Load Animes & Update README
+        uses: glup3/anilist-animes-action@v1.0.0
         with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          ANILIST_USERNAME: 'glup3'
+          HEADER_TITLE: 'Glup3\'s cool awesome Animes'

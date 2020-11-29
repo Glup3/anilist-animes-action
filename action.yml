@@ -1,17 +1,43 @@
-name: 'Hello World'
+name: 'AniList Animes Action'
+
+author: 'Glup3'
 
 description: 'Greet someone and record the time'
 
 inputs:
-  who-to-greet: # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
+  COMMIT_USERNAME:
+    required: false
+    description: 'Username used for committing to the repository'
+    default: 'AniList Action BOT'
 
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  COMMIT_EMAIL:
+    required: false
+    description: 'Email used for committing to the repository'
+    default: 'anilist-action-bot@github.com'
+
+  COMMIT_MESSAGE:
+    required: false
+    description: 'Message used for committing to the repository'
+    default: 'Updated Markdown with Users Anime List'
+
+  ANILIST_USERNAME:
+    required: true
+    description: 'AniList Username'
+
+  MARKDOWN_PATH:
+    required: false
+    description: 'Path to the markdown file'
+    default: './README.md'
+
+  HEADER_TITLE:
+    required: false
+    description: 'Title for the header section'
+    default: 'My Anime Lists'
 
 runs:
   using: 'node12'
   main: 'dist/index.js'
+
+branding:
+  icon: 'image'
+  color: 'blue'
