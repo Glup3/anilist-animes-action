@@ -136,9 +136,9 @@ function injectMarkdownWithContent(markdown, injectedContent) {
 }
 
 async function commitMarkdownFile(markdownPath, username, email, message) {
-  await exec(`git config --global user.email ${email}`);
-  await exec(`git config --global user.name ${username}`);
+  await exec(`git config --global user.email "${email}"`);
+  await exec(`git config --global user.name "${username}"`);
   await exec(`git add ${markdownPath}`);
-  await exec(`git commit -m ${message}`);
+  await exec(`git commit -m "${message}"`);
   await exec(`git push`);
 }
