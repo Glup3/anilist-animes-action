@@ -10,7 +10,7 @@ jobs:
     name: Updates rejukes.md Anime List
     steps:
       - uses: actions/checkout@v2
-      - uses: glup3/anilist-animes-action@v1.0.3
+      - uses: glup3/anilist-animes-action@v1.1.0
         with:
           ANILIST_USERNAME: 'Rejukes'
           MARKDOWN_PATH: './users/rejukes.md'
@@ -46,3 +46,7 @@ AniList User: [Rejukes](https://anilist.co/user/Rejukes/)
 <img height="200px" width="150px" title="One Piece" alt="One Piece" src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg"> 
 
 <!-- ANILIST_ANIME:END -->
+
+
+<!-- ANILIST_MANGA:START -->
+<!-- ANILIST_MANGA:END -->

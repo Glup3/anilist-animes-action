@@ -20,4 +20,3 @@ jobs:
           COMMIT_MESSAGE: 'hehe, watched new animes!'
           IMG_HEIGHT: 150
           IMG_WIDTH: 100
-          ANIME_GRID: false
