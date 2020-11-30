@@ -10,7 +10,7 @@ jobs:
     name: Updates kuroo.md Anime List
     steps:
       - uses: actions/checkout@v2
-      - uses: glup3/anilist-animes-action@v1.0.3
+      - uses: glup3/anilist-animes-action@v1.0.4
         with:
           ANILIST_USERNAME: 'Kuroo'
           HEADER_TITLE: "Kuroo's mysterious hidden AniList"

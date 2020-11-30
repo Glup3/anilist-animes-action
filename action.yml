@@ -2,7 +2,7 @@ name: 'AniList Animes Action'
 
 author: 'Glup3'
 
-description: 'Greet someone and record the time'
+description: 'Adds Anime/Manga Lists to a Markdown file'
 
 inputs:
   COMMIT_USERNAME:
