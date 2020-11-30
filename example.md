@@ -1,4 +1,4 @@
-# AniList Animes Actin Example
+# AniList Animes Action Example
 
 Here is some content before the comments.
 
