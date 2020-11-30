@@ -7,7 +7,7 @@ Here is some content before the comments.
 # Glup3's cool awesome Animes
 
 AniList User: [glup3](https://anilist.co/user/glup3/animelist)  
-**Last Updated:** 00:20:45 GMT+0000 (Coordinated Universal Time)
+**Last Updated:** 01:24:23 GMT+0000 (Coordinated Universal Time)
 
 
 
@@ -34,16 +34,6 @@ AniList User: [glup3](https://anilist.co/user/glup3/animelist)
 ## Dropped
 
 <img height="200px" width="150px" title="Arifureta Shokugyou de Sekai Saikyou" alt="Arifureta Shokugyou de Sekai Saikyou" src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx100668-DvOn5bMOt4cy.jpg"> <img height="200px" width="150px" title="Shijou Saikyou no Deshi Kenichi" alt="Shijou Saikyou no Deshi Kenichi" src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1559-7ZlyZxtBNo8g.jpg"> <img height="200px" width="150px" title="Soul Eater" alt="Soul Eater" src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx3588-CA8LE5gjm9Qx.png"> <img height="200px" width="150px" title="Rainbow: Nisha Rokubou no Shichinin" alt="Rainbow: Nisha Rokubou no Shichinin" src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6114-shZ3lroOFRAo.jpg"> 
-
-
-## Would recommend
-
-<img height="200px" width="150px" title="Tonikaku Kawaii" alt="Tonikaku Kawaii" src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b116267-JArFvMYRdnbd.jpg"> 
-
-
-## Must watch
-
-<img height="200px" width="150px" title="Haikyuu!! TO THE TOP 2" alt="Haikyuu!! TO THE TOP 2" src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx113538-7oaqaTNMpL6r.png"> 
 
 <!-- ANILIST:END -->
 
