@@ -1,5 +1,5 @@
-query MyAnimes($username: String) {
-  MediaListCollection(userName: $username, type: ANIME) {
+query MyAnimes($username: String, $type: MediaType) {
+  MediaListCollection(userName: $username, type: $type) {
     lists {
       name
       entries {
@@ -10,6 +10,7 @@ query MyAnimes($username: String) {
           coverImage {
             large
           }
+          siteUrl
         }
       }
     }

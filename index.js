@@ -5,8 +5,10 @@ const fs = require('fs');
 
 const exec = util.promisify(require('child_process').exec);
 
-const KEYWORD_START = '<!-- ANILIST:START -->';
-const KEYWORD_END = '<!-- ANILIST:END -->';
+const KEYWORD_ANIME_START = '<!-- ANILIST_ANIME:START -->';
+const KEYWORD_ANIME_END = '<!-- ANILIST_ANIME:END -->';
+const KEYWORD_MANGA_START = '<!-- ANILIST_MANGA:START -->';
+const KEYWORD_MANGA_END = '<!-- ANILIST_MANGA:END -->';
 
 (async () => {
   const commitUsername = core.getInput('COMMIT_USERNAME');
@@ -15,25 +17,37 @@ const KEYWORD_END = '<!-- ANILIST:END -->';
   const anilistUsername = core.getInput('ANILIST_USERNAME');
   const markdownPath = core.getInput('MARKDOWN_PATH');
   const headerTitle = core.getInput('HEADER_TITLE');
+  const isAnimeGrid = core.getInput('ANIME_GRID') === 'true';
+  const isMangaGrid = core.getInput('MANGA_GRID') === 'true';
 
   try {
-    const content = await buildCompleteMarkdown(anilistUsername, headerTitle);
     const selectedMarkdown = fs.readFileSync(markdownPath, 'utf-8');
-    const injectedMarkdown = injectMarkdownWithContent(
+
+    const animeLists = await getMediaListsFromUsername(anilistUsername, 'ANIME');
+    const animeContent = buildMarkdownMediaLists(animeLists, isAnimeGrid);
+    const animeMarkdown = buildCompleteMarkdown(anilistUsername, headerTitle, animeContent);
+    const animeInjectedMarkdown = injectMarkdownWithContent(
       selectedMarkdown,
-      content
+      animeMarkdown,
+      KEYWORD_ANIME_START,
+      KEYWORD_ANIME_END
     );
 
-    if (selectedMarkdown === injectedMarkdown) {
+    const mangaLists = await getMediaListsFromanilistUsername(anilistUsername, 'MANGA');
+    const mangaContent = buildMarkdownMediaLists(mangaLists, isMangaGrid);
+    const mangaMarkdown = buildCompleteMarkdown(anilistUsername, headerTitle, mangaContent);
+    const mangaInjectedMarkdown = injectMarkdownWithContent(
+      animeInjectedMarkdown,
+      mangaMarkdown,
+      KEYWORD_MANGA_START,
+      KEYWORD_MANGA_END
+    );
+
+    if (selectedMarkdown === mangaInjectedMarkdown) {
       core.info('No changes detected');
     } else {
-      fs.writeFileSync(markdownPath, injectedMarkdown);
-      await commitMarkdownFile(
-        markdownPath,
-        commitUsername,
-        commitEmail,
-        commitMessage
-      );
+      fs.writeFileSync(markdownPath, mangaInjectedMarkdown);
+      await commitMarkdownFile(markdownPath, commitUsername, commitEmail, commitMessage);
       core.info('Markdown successfully updated');
     }
   } catch (error) {
@@ -41,7 +55,7 @@ const KEYWORD_END = '<!-- ANILIST:END -->';
   }
 })();
 
-function getAnimeListsFromUsername(username) {
+function getMediaListsFromUsername(username, mediaType) {
   const url = 'https://graphql.anilist.co';
   const query = fs.readFileSync('./my-animes.graphql', 'utf-8');
   const options = {
@@ -52,7 +66,7 @@ function getAnimeListsFromUsername(username) {
     },
     body: JSON.stringify({
       query: query,
-      variables: { username: username },
+      variables: { username: username, type: mediaType },
     }),
   };
 
@@ -70,66 +84,75 @@ function getAnimeListsFromUsername(username) {
     });
 }
 
-function buildMarkdownAnimeLists(lists) {
+function buildMarkdownMediaLists(lists, isGrid = true) {
   let markdownText = '';
 
-  for (let i = 0; i < lists.length; i++) {
-    markdownText += `\n\n## ${lists[i].name}\n\n`;
-    markdownText += buildMarkdownAnimeGrid(lists[i]);
+  for (const list of lists) {
+    markdownText += `\n\n## ${list.name}\n\n`;
+    markdownText += isGrid ? buildMarkdownMediaGrid(list) : buildMarkdownMediaList(list);
     markdownText += '\n';
   }
 
   return markdownText;
 }
 
-function buildMarkdownAnimeGrid(list) {
+function buildMarkdownMediaGrid(list) {
+  let markdownText = '';
+  const imgHeight = core.getInput('IMG_HEIGHT');
+  const imgWidth = core.getInput('IMG_WIDTH');
+
+  for (const entry of list.entries) {
+    const animeName = entry.media.title.romaji.replace(/"/g, "'");
+    const animeImage = entry.media.coverImage.large;
+    markdownText += `<img height="${imgHeight}px" width="${imgWidth}px" title="${animeName}" alt="${animeName}" src="${animeImage}"> `;
+  }
+
+  return markdownText;
+}
+
+function buildMarkdownMediaList(list) {
   let markdownText = '';
 
-  for (let i = 0; i < list.entries.length; i++) {
-    const animeName = list.entries[i].media.title.romaji;
-    const animeImage = list.entries[i].media.coverImage.large;
-    markdownText += `<img height="200px" width="150px" title="${animeName}" alt="${animeName}" src="${animeImage}"> `;
+  for (const entry of list.entries) {
+    const animeName = entry.media.title.romaji;
+    const animeUrl = entry.media.siteUrl;
+    markdownText += `- [${animeName}](${animeUrl})\n`;
   }
 
   return markdownText;
 }
 
-async function buildCompleteMarkdown(username, title) {
+function buildCompleteMarkdown(username, title, content) {
   let markdownText = `\n# ${title}`;
-  const animes = await getAnimeListsFromUsername(username);
   const time = new Date().toTimeString();
 
-  markdownText += `\n\nAniList User: [${username}](https://anilist.co/user/${username}/animelist)  \n`;
+  markdownText += `\n\nAniList User: [${username}](https://anilist.co/user/${username}/)  \n`;
   markdownText += `**Last Updated:** ${time}\n\n`;
-  markdownText += buildMarkdownAnimeLists(animes);
+  markdownText += content;
 
   return markdownText;
 }
 
-function injectMarkdownWithContent(markdown, injectedContent) {
+function injectMarkdownWithContent(markdown, injectedContent, keywordStart, keywordEnd) {
   const newMarkdown = markdown.split('\n');
 
-  const startIndex = newMarkdown.findIndex(
-    (content) => content.trim() === KEYWORD_START
-  );
+  const startIndex = newMarkdown.findIndex((content) => content.trim() === keywordStart);
 
   if (startIndex === -1) {
-    throw new Error(`Couldn't find ${KEYWORD_START} comment`);
+    core.info(`Couldn't find ${keywordStart} comment`);
+    core.info(`Skipping ${keywordStart}`);
+    return markdown;
   }
 
-  const endIndex = newMarkdown.findIndex(
-    (content) => content.trim() === KEYWORD_END
-  );
+  const endIndex = newMarkdown.findIndex((content) => content.trim() === keywordEnd);
 
   if (endIndex === -1) {
-    throw new Error(`Couldn't find ${KEYWORD_END} comment`);
+    core.info(`Couldn't find ${keywordEnd} comment`);
+    core.info(`Skipping ${keywordEnd}`);
+    return markdown;
   }
 
-  newMarkdown.splice(
-    startIndex + 1,
-    endIndex - startIndex - 1,
-    injectedContent
-  );
+  newMarkdown.splice(startIndex + 1, endIndex - startIndex - 1, injectedContent);
 
   return newMarkdown.join('\n');
 }

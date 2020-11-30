@@ -34,6 +34,26 @@ inputs:
     description: 'Title for the header section'
     default: 'My Anime Lists'
 
+  IMG_HEIGHT:
+    required: false
+    description: 'Image height (px) in the grid'
+    default: 200
+
+  IMG_WIDTH:
+    required: false
+    description: 'Image width (px) in the grid'
+    default: 150
+
+  ANIME_GRID:
+    required: false
+    description: 'Display animes as grid instead of a list'
+    default: true
+
+  MANGA_GRID:
+    required: false
+    description: 'Display animes as grid instead of a list'
+    default: true
+
 runs:
   using: 'node12'
   main: 'dist/index.js'
