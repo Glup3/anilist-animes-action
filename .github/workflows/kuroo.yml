@@ -1,7 +1,6 @@
 on:
   schedule:
-    # every week
-    - cron: 0 0 * * 0
+    - cron: 0 0 * * WED # every wednesday
 
   workflow_dispatch:
 
@@ -19,14 +18,3 @@ jobs:
           COMMIT_USERNAME: 'AniBOT'
           COMMIT_EMAIL: 'ani-bot@github.com'
           COMMIT_MESSAGE: 'hehe, watched new animes!'
-
-  update_animes_rejukes:
-    runs-on: ubuntu-latest
-    name: Updates rejukes.md Anime List
-    needs: update_animes_kuroo
-    steps:
-      - uses: actions/checkout@v2
-      - uses: glup3/anilist-animes-action@v1.0.3
-        with:
-          ANILIST_USERNAME: 'Rejukes'
-          MARKDOWN_PATH: './users/rejukes.md'
