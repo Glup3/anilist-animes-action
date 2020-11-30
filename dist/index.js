@@ -40,7 +40,7 @@ const KEYWORD_MANGA_END = '<!-- ANILIST_MANGA:END -->';
       KEYWORD_ANIME_END
     );
 
-    const mangaLists = await getMediaListsFromanilistUsername(anilistUsername, 'MANGA');
+    const mangaLists = await getMediaListsFromUsername(anilistUsername, 'MANGA');
     const mangaContent = buildMarkdownMediaLists(mangaLists, isMangaGrid);
     const mangaMarkdown = buildCompleteMarkdown(anilistUsername, headerTitle, mangaContent);
     const mangaInjectedMarkdown = injectMarkdownWithContent(
