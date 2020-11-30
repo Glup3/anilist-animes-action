@@ -10,7 +10,7 @@ jobs:
     name: Updates kuroo.md Anime List
     steps:
       - uses: actions/checkout@v2
-      - uses: glup3/anilist-animes-action@v1.0.4
+      - uses: glup3/anilist-animes-action@v1.1.0
         with:
           ANILIST_USERNAME: 'Kuroo'
           HEADER_TITLE: "Kuroo's mysterious hidden AniList"
@@ -18,3 +18,6 @@ jobs:
           COMMIT_USERNAME: 'AniBOT'
           COMMIT_EMAIL: 'ani-bot@github.com'
           COMMIT_MESSAGE: 'hehe, watched new animes!'
+          IMG_HEIGHT: 150
+          IMG_WIDTH: 100
+          ANIME_GRID: false

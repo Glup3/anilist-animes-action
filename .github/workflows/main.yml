@@ -11,8 +11,9 @@ jobs:
     name: Updates example.md Anime List
     steps:
       - uses: actions/checkout@v2
-      - uses: glup3/anilist-animes-action@v1.0.4
+      - uses: glup3/anilist-animes-action@v1.1.0
         with:
           ANILIST_USERNAME: 'glup3'
           HEADER_TITLE: "Glup3's cool awesome Animes"
           MARKDOWN_PATH: './example.md'
+          MANGA_GRID: false
