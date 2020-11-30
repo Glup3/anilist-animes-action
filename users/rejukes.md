@@ -22,7 +22,7 @@ jobs:
 # My Anime Lists
 
 AniList User: [Rejukes](https://anilist.co/user/Rejukes/)  
-**Last Updated:** 15:07:16 GMT+0000 (Coordinated Universal Time)
+**Last Updated:** 15:16:03 GMT+0000 (Coordinated Universal Time)
 
 
 
@@ -49,4 +49,16 @@ AniList User: [Rejukes](https://anilist.co/user/Rejukes/)
 
 
 <!-- ANILIST_MANGA:START -->
+
+# My Anime Lists
+
+AniList User: [Rejukes](https://anilist.co/user/Rejukes/)  
+**Last Updated:** 15:16:04 GMT+0000 (Coordinated Universal Time)
+
+
+
+## Reading
+
+<img height="200px" width="150px" title="Na Honjaman Level Up" alt="Na Honjaman Level Up" src="https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx105398-ul12NOTmWIeH.jpg"> <img height="200px" width="150px" title="Nanatsu no Taizai" alt="Nanatsu no Taizai" src="https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/nx74485-mFbj0sQEcBur.jpg"> <img height="200px" width="150px" title="Shingeki no Kyojin" alt="Shingeki no Kyojin" src="https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx53390-h7YSU2iWytJu.jpg"> 
+
 <!-- ANILIST_MANGA:END -->
