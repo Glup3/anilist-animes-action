@@ -1,5 +1,7 @@
 # AniList Animes Action
 
+![Example Screenshot](./screenshots/screenshot1.png?raw=true)
+
 ## Usage
 
 Add the following keywords somewhere in your **Markdown** file. The GitHub Action will fill those comments with anime lists.
@@ -45,6 +47,14 @@ jobs:
 | `ANILIST_USERNAME` |                                          | AniList Username                               | Yes      |
 | `MARKDOWN_PATH`    | `./README.md`                            | Path to the markdown file                      | No       |
 | `HEADER_TITLE`     | `My Anime Lists`                         | Title for the header section                   | No       |
+
+# Task List
+
+- [x] User's Anime Lists
+- [ ] User's Manga Lists
+- [ ] Toggle Lists between GRID and LIST
+- [ ] Customize Grid Size (height & width)
+- [ ] Additional Info for LIST (anime per line)
 
 # Motivation
 
