@@ -81,7 +81,7 @@ function buildMarkdownAnimeLists(lists) {
   let markdownText = '';
 
   for (let i = 0; i < lists.length; i++) {
-    markdownText += `## ${lists[i].name}\n\n`;
+    markdownText += `\n\n## ${lists[i].name}\n\n`;
     markdownText += buildMarkdownAnimeGrid(lists[i]);
     markdownText += '\n';
   }
