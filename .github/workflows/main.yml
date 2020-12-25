@@ -1,5 +1,5 @@
 on:
-  schedule:
+  # schedule:
     # every week
     # - cron: 0 0 * * 0
 
