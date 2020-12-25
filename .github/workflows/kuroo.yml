@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: 0 0 * * WED # every wednesday
+    # - cron: 0 0 * * WED # every wednesday
 
   workflow_dispatch:
 
